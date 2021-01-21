@@ -14,6 +14,10 @@
 #import "FSThreadTimer.h"
 #import "FSPermanentThread.h"
 
+#import <os/lock.h>
+
+#import "FSGCDTimer.h"
+
 @interface AAThread : NSThread
 
 @end
@@ -39,14 +43,34 @@
 
 @property (nonatomic, strong) FSPermanentThread *permanentThread;
 
+@property (nonatomic, strong) FSGCDTimer *gcdTimer;
+
 @end
 
 @implementation ViewController
 
 - (const NSString *)name
 {
+//    OS_UNFAIR_LOCK_INIT
+    
+    dispatch_semaphore_t aa = dispatch_semaphore_create(5);
+    
+    dispatch_semaphore_wait(aa, 100);
+    dispatch_semaphore_signal(aa);
+    
+//    dispatch_barrier_async(<#dispatch_queue_t  _Nonnull queue#>, <#^(void)block#>)
+    
     return @"";
 }
+
+/*
+ 保留地址区域
+ 代码段 - 编译后的代码
+ 数据段 - 字符串常量、全局变量、静态变量
+ 堆区  -
+ 栈区  - 函数调用的开销、局部变量
+ 内核区
+ */
 
 /// 这是a
 /// @param a 我是a
@@ -104,6 +128,30 @@
     
     [self.permanentThread start];
     
+    NSString *a = @"abc";
+    NSString *b = @"abc";
+    NSString *c = [NSString stringWithFormat:@"abc"];
+    NSString *d = [NSString stringWithFormat:@"abcsdfasdfasdfasdfasdfasdascasdcasd"];
+    NSLog(@"%p, %p, %p, %p", a, b, c, d);
+    NSLog(@"%p, %p, %p, %p", &a, &b, &c, &d);
+    NSLog(@"%@, %@, %@, %@", a, b, c, d);
+    NSLog(@"%@, %@, %@, %@", [a class], [b class], [c class], [d class]);
+    
+    NSLog(@"---------------");
+    
+    NSNumber *num1 = @4;
+    NSNumber *num2 = @5;
+    NSNumber *num3 = [NSNumber numberWithInt:134123];
+    NSLog(@"%p, %p, %p", num1, num2, num3);
+    
+    
+    NSFileManager *m1 = [NSFileManager defaultManager];
+    
+    NSFileManager *m2 = [[NSFileManager alloc] init];
+    
+    NSLog(@"%@", m1);
+    NSLog(@"%@", m2);
+    NSLog(@"");
 }
 
 - (void)rightAction
@@ -118,8 +166,12 @@
 //
 //    self.fs_timer = nil;
     
-    [self.permanentThread stop];
-    self.permanentThread = nil;
+//    [self.permanentThread stop];
+//    self.permanentThread = nil;
+    
+    [self.gcdTimer stopTimer];
+    
+    self.gcdTimer = nil;
     
 }
 
@@ -167,10 +219,18 @@
 //        NSLog(@"%@", [NSThread currentThread]);
 //    }];
     
-    [self.permanentThread syncExecuteTask:^{
-        [NSThread sleepForTimeInterval:2];
-        NSLog(@"%@", [NSThread currentThread]);
-    }];
+    
+//    [self.permanentThread syncExecuteTask:^{
+//        [NSThread sleepForTimeInterval:2];
+//        NSLog(@"%@", [NSThread currentThread]);
+//    }];
+    
+    
+    {
+        FSGCDTimer *timer = [[FSGCDTimer alloc] init];
+        
+        self.gcdTimer = timer;
+    }
     
     NSLog(@"touch end");
     

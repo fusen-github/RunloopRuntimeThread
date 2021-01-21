@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		048C23D825AD55D800F1B586 /* FSPermanentThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 048C23D725AD55D800F1B586 /* FSPermanentThread.m */; };
 		048C23DC25AD578500F1B586 /* FSThreadTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 048C23DB25AD578500F1B586 /* FSThreadTimer.m */; };
+		048C23E525AD8B0200F1B586 /* gcd.m in Sources */ = {isa = PBXBuildFile; fileRef = 048C23E425AD8B0200F1B586 /* gcd.m */; };
+		048C240525AFD19E00F1B586 /* FSGCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 048C240425AFD19E00F1B586 /* FSGCDTimer.m */; };
 		04A5682425AD3D030054F775 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5682325AD3D030054F775 /* SecondViewController.m */; };
 		04D4ECC825450B1700A7AA2E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D4ECC725450B1700A7AA2E /* AppDelegate.m */; };
 		04D4ECCB25450B1700A7AA2E /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D4ECCA25450B1700A7AA2E /* SceneDelegate.m */; };
@@ -24,6 +26,9 @@
 		048C23D725AD55D800F1B586 /* FSPermanentThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPermanentThread.m; sourceTree = "<group>"; };
 		048C23DA25AD578500F1B586 /* FSThreadTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSThreadTimer.h; sourceTree = "<group>"; };
 		048C23DB25AD578500F1B586 /* FSThreadTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSThreadTimer.m; sourceTree = "<group>"; };
+		048C23E425AD8B0200F1B586 /* gcd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gcd.m; sourceTree = "<group>"; };
+		048C240325AFD19E00F1B586 /* FSGCDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSGCDTimer.h; sourceTree = "<group>"; };
+		048C240425AFD19E00F1B586 /* FSGCDTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSGCDTimer.m; sourceTree = "<group>"; };
 		04A5682225AD3D030054F775 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		04A5682325AD3D030054F775 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		04D4ECC325450B1700A7AA2E /* FSOcApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FSOcApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +56,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		048C23E225AD8AC400F1B586 /* MultiThreads */ = {
+			isa = PBXGroup;
+			children = (
+				048C23E325AD8AD600F1B586 /* GCD */,
+				048C240325AFD19E00F1B586 /* FSGCDTimer.h */,
+				048C240425AFD19E00F1B586 /* FSGCDTimer.m */,
+			);
+			path = MultiThreads;
+			sourceTree = "<group>";
+		};
+		048C23E325AD8AD600F1B586 /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				048C23E425AD8B0200F1B586 /* gcd.m */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
 		04D4ECBA25450B1700A7AA2E = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +105,7 @@
 				048C23D725AD55D800F1B586 /* FSPermanentThread.m */,
 				048C23DA25AD578500F1B586 /* FSThreadTimer.h */,
 				048C23DB25AD578500F1B586 /* FSThreadTimer.m */,
+				048C23E225AD8AC400F1B586 /* MultiThreads */,
 				04D4ECCF25450B1700A7AA2E /* Main.storyboard */,
 				04D4ECD225450B1800A7AA2E /* Assets.xcassets */,
 				04D4ECD425450B1800A7AA2E /* LaunchScreen.storyboard */,
@@ -163,9 +187,11 @@
 				04A5682425AD3D030054F775 /* SecondViewController.m in Sources */,
 				04D4ECCE25450B1700A7AA2E /* ViewController.m in Sources */,
 				04D4ECC825450B1700A7AA2E /* AppDelegate.m in Sources */,
+				048C240525AFD19E00F1B586 /* FSGCDTimer.m in Sources */,
 				048C23D825AD55D800F1B586 /* FSPermanentThread.m in Sources */,
 				048C23DC25AD578500F1B586 /* FSThreadTimer.m in Sources */,
 				04D4ECD925450B1800A7AA2E /* main.m in Sources */,
+				048C23E525AD8B0200F1B586 /* gcd.m in Sources */,
 				04D4ECCB25450B1700A7AA2E /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
